@@ -4,10 +4,16 @@ import { client, urlFor } from '../../lib/client'
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { Product } from '../../components';
 
+import { useStateContext } from '../../context/StateContext'
+
 const ProductDetails = ({product, products}) => {
     const { image, name, details, price } = product;
 
     const [index, setIndex] = useState(0);
+
+    //SINCE USESTATECONTEXT IS IMPORTED WE CAN USE IT LIKE A HOOK
+    const { decQty, incQty, qty, onAdd } = useStateContext();
+
   return (
     <div>
        <div className="product-detail-container">
@@ -45,19 +51,19 @@ const ProductDetails = ({product, products}) => {
             <div className='quantity'>
                 <h3>quantity:</h3>
                 <p className='quantity-desc'>
-                    <span className='minus' onClick=''>
+                    <span className='minus' onClick={decQty}>
                         <AiOutlineMinus />
                     </span>
                     <span className='num' onClick=''>
-                        0
+                        {qty}
                     </span>
-                    <span className='plus' onClick=''>
+                    <span className='plus' onClick={incQty}>
                         <AiOutlinePlus />
                     </span>
                 </p>
             </div>
             <div className='buttons'>
-                <button type='button' className='add-to-cart' onClick=''>
+                <button type='button' className='add-to-cart' onClick={() => onAdd(product, qty)}>
                     Add to Cart
                 </button>
                 <button type='button' className='buy-now' onClick=''>
@@ -108,8 +114,6 @@ export const getStaticPaths = async () => {
     
     const product = await client.fetch(query);
     const products = await client.fetch(productsQuery);
-  
-    console.log(product);
   
     return {
       props: { products, product }
