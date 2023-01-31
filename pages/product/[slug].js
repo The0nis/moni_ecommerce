@@ -12,7 +12,12 @@ const ProductDetails = ({product, products}) => {
     const [index, setIndex] = useState(0);
 
     //SINCE USESTATECONTEXT IS IMPORTED WE CAN USE IT LIKE A HOOK
-    const { decQty, incQty, qty, onAdd } = useStateContext();
+    const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
+
+    const handleBuyNow = () => {
+      onAdd(product, qty);
+      setShowCart(true);
+    }
 
   return (
     <div>
@@ -54,7 +59,7 @@ const ProductDetails = ({product, products}) => {
                     <span className='minus' onClick={decQty}>
                         <AiOutlineMinus />
                     </span>
-                    <span className='num' onClick=''>
+                    <span className='num'>
                         {qty}
                     </span>
                     <span className='plus' onClick={incQty}>
@@ -66,7 +71,7 @@ const ProductDetails = ({product, products}) => {
                 <button type='button' className='add-to-cart' onClick={() => onAdd(product, qty)}>
                     Add to Cart
                 </button>
-                <button type='button' className='buy-now' onClick=''>
+                <button type='button' className='buy-now' onClick={handleBuyNow}>
                     Buy Now
                 </button>
             </div>
