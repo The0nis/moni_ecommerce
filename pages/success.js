@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 import React, { useEffect } from 'react'
 import Link from 'next/Link';
 import { BsBagCheckFill } from 'react-icons/bs';
