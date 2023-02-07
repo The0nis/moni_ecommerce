@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 import React, { useEffect } from 'react'
-import Link from 'next/Link';
+import Link from 'next/link';
 import { BsBagCheckFill } from 'react-icons/bs';
 import { runFireworks } from '../lib/utils';
 
