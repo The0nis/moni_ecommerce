@@ -17,8 +17,9 @@ const Success = () => {
       runFireworks();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    
 
+    // https://moni-ecommerce-stripe.vercel.app/  
+    
   return (
     <div className='success-wrapper'>
         <div className='success'>
